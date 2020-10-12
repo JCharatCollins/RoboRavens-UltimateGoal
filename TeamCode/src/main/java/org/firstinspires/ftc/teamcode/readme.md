@@ -1,10 +1,9 @@
 ## TeamCode Module
-## nick was here
 Welcome!
 
 This module, TeamCode, is the place where you will write/paste the code for your team's
 robot controller App. This module is currently empty (a clean slate) but the
-process for adding OpModes is straightforward.
+process for adding OpModes is straightforward. Also, Nicholas Song was here.
 
 ## Creating your own OpModes
 
