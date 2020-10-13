@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import Team7159.ComplexRobots.DR4BBotV1;
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="TeleOp")
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="TeleOpSkystonesTrial")
 public class TeleOpSkystonesTrial extends LinearOpMode {
 
     //we make the robot
