@@ -67,12 +67,8 @@ public class CraterExperimental extends LinearOpMode {
         Vuforia.setFrameFormat(PIXEL_FORMAT.RGB565, true);
 
         //Initializes the object detector
-        if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
-            initTfod();
-        } else {
-            telemetry.addData("Sorry!", "This device is not compatible with TFOD");
-        }
-       // robot.liftServo.setPosition(0.3);
+        initTfod();
+        // robot.liftServo.setPosition(0.3);
 
         waitForStart();
 

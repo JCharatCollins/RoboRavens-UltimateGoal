@@ -19,7 +19,7 @@ import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABE
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.TFOD_MODEL_ASSET;
 
 @TeleOp(name="PixelCalculator")
-public class PixelCalculator extends LinearOpMode {
+public class PixelCalculator<tfod> extends LinearOpMode {
     private static final String VUFORIA_KEY = "AQ8rpDD/////AAABmRNIMKzPaEhBgamlRTL2RRMKI6zA+IW8Qqd6l0v65fwa8N2l" +
             "n17xMthqidBc7uWyTNA1pYUodjK8ngEvudjz4FeoJbQpXxwYm2/H5XXwlWywZfUHa74lGuma90fRmTuEeFwAsDTZ4JfXojf719" +
             "wTliDCdlKCOkQuuvU0Cx0JyzdYT/NnOYZWroHx2maby73wQW1T76aSlKsHE/cZ1FmVoOokP+HqIfaOPpUR/gVkDgqyB7XAOaBd" +
@@ -37,19 +37,11 @@ public class PixelCalculator extends LinearOpMode {
 
         initVuforia();
 
-        if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
-            initTfod();
-        } else {
-            telemetry.addData("Sorry!", "This device is not compatible with TFOD");
-        }
-
+        initTfod();
         waitForStart();
 
 
-        if (tfod != null) {
-            tfod.activate();
-        }
-
+        tfod.activate();
 
 
         while (opModeIsActive()) {
