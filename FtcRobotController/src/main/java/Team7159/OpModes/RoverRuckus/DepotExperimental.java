@@ -67,13 +67,7 @@ public class DepotExperimental extends LinearOpMode {
         vuforia.setFrameQueueCapacity(6);
         Vuforia.setFrameFormat(PIXEL_FORMAT.RGB565, true);
 
-        //Initializes the object detector
-        if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
-            initTfod();
-        } else {
-            telemetry.addData("Sorry!", "This device is not compatible with TFOD");
-            telemetry.update();
-        }
+        initTfod();
         // robot.liftServo.setPosition(0.3);
 
         waitForStart();
