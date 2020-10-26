@@ -7,7 +7,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import Team7159.BasicRobots.BasicMecanum;
-import Team7159.BasicRobots.BasicTank;
 import Team7159.Utils.RobotComp;
 
 public class VacuumBot extends BasicMecanum {

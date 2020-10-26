@@ -1,6 +1,5 @@
 package Team7159.ComplexRobots;
 
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -8,9 +7,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import Team7159.BasicRobots.BasicMecanum;
-import Team7159.BasicRobots.BasicMecanumRoverRuckus;
-import Team7159.BasicRobots.BasicMecanumSkystones;
-import Team7159.Enums.Direction;
 
 /*
     CONFIGURATION:
@@ -40,7 +36,7 @@ import Team7159.Enums.Direction;
 
  */
 
-public class DR4BBotV1 extends BasicMecanumSkystones {
+public class DR4BBotV1 extends BasicMecanum {
 
     //The motor controlling rotating the vacuum
     public DcMotor rightLiftMotor;

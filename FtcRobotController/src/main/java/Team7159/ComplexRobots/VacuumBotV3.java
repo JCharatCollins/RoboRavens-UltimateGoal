@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import Team7159.BasicRobots.BasicMecanum;
-import Team7159.BasicRobots.BasicMecanumRoverRuckus;
 
 /*
     CONFIGURATION:
@@ -38,7 +37,7 @@ import Team7159.BasicRobots.BasicMecanumRoverRuckus;
 
  */
 
-public class VacuumBotV3 extends BasicMecanumRoverRuckus {
+public class VacuumBotV3 extends BasicMecanum {
 
     //The motor controlling rotating the vacuum
     public DcMotor chainMotor;
