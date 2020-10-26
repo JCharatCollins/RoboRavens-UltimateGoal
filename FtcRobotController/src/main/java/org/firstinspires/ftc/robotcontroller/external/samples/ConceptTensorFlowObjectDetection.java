@@ -72,7 +72,7 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
             " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
 
     /**
-     * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
+     * {@VuforiaLocalizer #vuforia} is the variable we will use to store our instance of the Vuforia
      * localization engine.
      */
     private VuforiaLocalizer vuforia;
@@ -124,6 +124,7 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
 
                       // step through the list of recognitions and display boundary info.
                       int i = 0;
+
                       for (Recognition recognition : updatedRecognitions) {
                         telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
                         telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
