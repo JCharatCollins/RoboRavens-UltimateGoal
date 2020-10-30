@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import Team7159.BasicRobots.BasicMecanumSkystones;
+import Team7159.BasicRobots.BasicMecanum;
 
 /*
     CONFIGURATION:
@@ -36,7 +36,7 @@ import Team7159.BasicRobots.BasicMecanumSkystones;
 
  */
 
-public class DR4BBotV2 extends BasicMecanumSkystones {
+public class DR4BBotV2 extends BasicMecanum {
 
     //The motor controlling rotating the vacuum
     public DcMotor rightLiftMotor;

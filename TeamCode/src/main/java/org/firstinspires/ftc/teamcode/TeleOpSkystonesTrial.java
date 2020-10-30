@@ -11,7 +11,6 @@ public class TeleOpSkystonesTrial extends LinearOpMode {
     //we make the robot
     private DR4BBotV1 robot = new DR4BBotV1();
 
-
     @Override
     public void runOpMode(){
 
