@@ -1,13 +1,13 @@
 package org.firstinspires.ftc.teamcode;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import Team7159.BasicRobots.TestRobot;
 import Team7159.ComplexRobots.LauncherBot;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Ultimate Goal TeleOp")
 public class TeleOpUltimateGoal extends LinearOpMode {
 
-    LauncherBot robot = new LauncherBot();
+    TestRobot robot = new TestRobot();
 
     @Override
     public void runOpMode() {
@@ -15,7 +15,7 @@ public class TeleOpUltimateGoal extends LinearOpMode {
         waitForStart();
 
         while(opModeIsActive()) {
-
+            robot.testMotor.setVelocity(5000);
         }
     }
 }

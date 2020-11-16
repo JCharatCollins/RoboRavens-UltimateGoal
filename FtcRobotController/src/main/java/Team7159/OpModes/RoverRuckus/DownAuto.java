@@ -17,9 +17,9 @@ public class DownAuto extends LinearOpMode {
 
         waitForStart();
 
-       robot.strafe(Direction.LEFT, 25);
+//       robot.strafe(Direction.LEFT, 25);
        sleep(500);
-       robot.strafe(Direction.RIGHT, 25);
+//       robot.strafe(Direction.RIGHT, 25);
 
     }
 

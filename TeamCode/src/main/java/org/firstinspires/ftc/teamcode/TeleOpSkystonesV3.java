@@ -50,22 +50,14 @@ public class TeleOpSkystonesV3 extends LinearOpMode {
 
             //Increments/decrements the target lift height based on both inputs from the A and Y buttons and the right trigger (which is used to slow down movement)
             if (gamepad1.a && gamepad1.y) {
-            }
-            else if(gamepad1.a) {
-                liftHeight -= 5 - (2*gamepad1.right_trigger);
-//                telemetry.addData("A", "A Pressed");
-            }
-            else if(gamepad1.y) {
-                liftHeight += 5 - (2*gamepad1.right_trigger);
+            } else if(gamepad1.a) liftHeight -= 5 - (2*gamepad1.right_trigger);
+//                telemetry.addData("A", "A Pressed")
+            else if(gamepad1.y) liftHeight += 5 - (2*gamepad1.right_trigger);
 //                telemetry.addData("Y", "Y Pressed");
-            }
 
             //Sets bound on ticks so that it can't go outside the maximum motor ticks or below 0.
-            if (liftHeight<0) {
-                liftHeight =0;
-            } else if (liftHeight > magicNumber) {
-                liftHeight = magicNumber;
-            }
+            if (liftHeight<0) liftHeight = 0;
+            else if (liftHeight > magicNumber) liftHeight = magicNumber;
 
             //If the individual motor's current tick position is not equal to its target, it is readjusted.
             if (robot.rightLiftMotor.getCurrentPosition() != liftHeight) {

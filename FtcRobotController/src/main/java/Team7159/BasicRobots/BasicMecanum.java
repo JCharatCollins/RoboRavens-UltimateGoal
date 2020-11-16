@@ -1,6 +1,7 @@
 package Team7159.BasicRobots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -17,17 +18,17 @@ public class BasicMecanum {
     MotorGroup Left;
     MotorGroup Right;
 
-    public DcMotor LFMotor;
-    public DcMotor RFMotor;
-    public DcMotor LBMotor;
-    public DcMotor RBMotor;
+    public DcMotorEx LFMotor;
+    public DcMotorEx RFMotor;
+    public DcMotorEx LBMotor;
+    public DcMotorEx RBMotor;
 
     public void init(HardwareMap Map) {
 
-        LFMotor = Map.dcMotor.get("FLDrive");
-        RFMotor = Map.dcMotor.get("FRDrive");
-        LBMotor = Map.dcMotor.get("BLDrive");
-        RBMotor = Map.dcMotor.get("BRDrive");
+        LFMotor = Map.get(DcMotorEx.class, "FLDrive");
+        RFMotor = Map.get(DcMotorEx.class, "FRDrive");
+        LBMotor = Map.get(DcMotorEx.class, "BLDrive");
+        RBMotor = Map.get(DcMotorEx.class, "BRDrive");
 
         LFMotor.setPower(0);
         RFMotor.setPower(0);
