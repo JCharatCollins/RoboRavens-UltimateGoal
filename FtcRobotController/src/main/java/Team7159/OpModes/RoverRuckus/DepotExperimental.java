@@ -88,7 +88,7 @@ public class DepotExperimental extends LinearOpMode {
 
         robot.driveDir(Direction.BACKWARDS, 4);
 
-        robot.strafe(Direction.LEFT, 13);
+//        robot.strafe(Direction.LEFT, 13);
 
 
         //robot.liftMotor.setPower(-0.8);
@@ -142,9 +142,9 @@ public class DepotExperimental extends LinearOpMode {
 
             lower = false;
 
-            robot.strafe(Direction.RIGHT, 13);
+//            robot.strafe(Direction.RIGHT, 13);
           //  moveRight(13);
-           // robot.strafe(Direction.LEFT, 12);
+//           // robot.strafe(Direction.LEFT, 12);
             sleep(500);
             takePic();
 
@@ -158,7 +158,7 @@ public class DepotExperimental extends LinearOpMode {
             comp = true;
         } else if(pos == 2){
             //If position is 2 then it means it must be the last one
-            robot.strafe(Direction.LEFT, 27);
+//            robot.strafe(Direction.LEFT, 27);
             robot.driveDir(Direction.FORWARDS, 5);
             sleep(500);
             takePic();
@@ -182,19 +182,19 @@ public class DepotExperimental extends LinearOpMode {
             //Center
             robot.driveDir(Direction.FORWARDS, 20);
             robot.turn(Direction.RIGHT, 45);
-            robot.strafe(Direction.LEFT, 10);
+//            robot.strafe(Direction.LEFT, 10);
             robot.driveDir(Direction.BACKWARDS, 10);
         }else if(pos == 1){
             //Right
             robot.driveDir(Direction.FORWARDS, 20);
             robot.turn(Direction.RIGHT, 45);
-            robot.strafe(Direction.LEFT, 27);
+//            robot.strafe(Direction.LEFT, 27);
             robot.driveDir(Direction.BACKWARDS, 25);
         }else if(pos == 2){
             //Left
             robot.driveDir(Direction.FORWARDS, 15);
             robot.turn(Direction.RIGHT, 45);
-            robot.strafe(Direction.LEFT, 7);
+//            robot.strafe(Direction.LEFT, 7);
            // robot.driveDir(Direction.FORWARDS, 5);
             //Lower here
         } else{
@@ -218,7 +218,7 @@ public class DepotExperimental extends LinearOpMode {
                     robot.driveDir(Direction.FORWARDS, 40);
                     robot.turn(Direction.RIGHT, 45);
                     //turn(Direction.LEFT,0.5,0.35);
-                    robot.strafe(Direction.LEFT, 10);
+//                    robot.strafe(Direction.LEFT, 10);
                     robot.driveDir(Direction.BACKWARDS, 10);
                     comp = true;
                 }else if(fLocation == 2){
@@ -226,14 +226,14 @@ public class DepotExperimental extends LinearOpMode {
                     robot.driveDir(Direction.FORWARDS, 40);
                     robot.turn(Direction.RIGHT, 45);
                     //turn(Direction.LEFT,0.5,0.35);
-                    robot.strafe(Direction.LEFT, 30);
+//                    robot.strafe(Direction.LEFT, 30);
                     robot.driveDir(Direction.BACKWARDS, 25);
 
                 }else if(fLocation == 3){
                     robot.driveDir(Direction.FORWARDS, 35);
                    // robot.driveDir(Direction.FORWARDS, 15);
                     robot.turn(Direction.RIGHT, 45);
-                    robot.strafe(Direction.LEFT, 10);
+//                    robot.strafe(Direction.LEFT, 10);
                   //  robot.driveDir(Direction.FORWARDS, 7);
                 }
             }
@@ -242,7 +242,7 @@ public class DepotExperimental extends LinearOpMode {
                 robot.driveDir(Direction.FORWARDS, 35);
                 // robot.driveDir(Direction.FORWARDS, 15);
                 robot.turn(Direction.RIGHT, 45);
-                robot.strafe(Direction.LEFT, 10);
+//                robot.strafe(Direction.LEFT, 10);
                 robot.driveDir(Direction.FORWARDS, 7);
             }
 
@@ -427,7 +427,7 @@ public class DepotExperimental extends LinearOpMode {
             if(gMX>=550){
                 strafe(Direction.LEFT,0.3,0.25);
             }else if(gMX<=350) {
-                //robot.strafe();
+//                //robot.strafe();
                 //strafe(Direction.RIGHT, 0.3, 0.25);
             }
         }

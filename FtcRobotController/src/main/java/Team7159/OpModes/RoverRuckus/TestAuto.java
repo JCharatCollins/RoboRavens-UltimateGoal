@@ -58,7 +58,7 @@ public class TestAuto extends LinearOpMode {
 
         waitForStart();
 
-        robot.strafe(Direction.RIGHT,50);
+//        robot.strafe(Direction.RIGHT,50);
          //        sleep(1000);
 //        robot.vacuumMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 //        robot.vacuumMotor.setPower(-0.3);
