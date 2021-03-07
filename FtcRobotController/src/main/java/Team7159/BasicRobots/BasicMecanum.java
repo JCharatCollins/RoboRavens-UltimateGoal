@@ -1,7 +1,6 @@
 package Team7159.BasicRobots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -18,22 +17,25 @@ public class BasicMecanum {
     MotorGroup Left;
     MotorGroup Right;
 
-    public DcMotorEx LFMotor;
-    public DcMotorEx RFMotor;
-    public DcMotorEx LBMotor;
-    public DcMotorEx RBMotor;
+    public DcMotor LFMotor;
+    public DcMotor RFMotor;
+    public DcMotor LBMotor;
+    public DcMotor RBMotor;
 
     public void init(HardwareMap Map) {
 
-        LFMotor = Map.get(DcMotorEx.class, "FLDrive");
-        RFMotor = Map.get(DcMotorEx.class, "FRDrive");
-        LBMotor = Map.get(DcMotorEx.class, "BLDrive");
-        RBMotor = Map.get(DcMotorEx.class, "BRDrive");
+        LFMotor = Map.dcMotor.get("FLDrive");
+        LBMotor = Map.dcMotor.get("BLDrive");
+        RFMotor = Map.dcMotor.get("FRDrive");
+        RBMotor = Map.dcMotor.get("BRDrive");
 
-        LFMotor.setPower(0);
-        RFMotor.setPower(0);
-        LBMotor.setPower(0);
-        RBMotor.setPower(0);
+        try {
+            LFMotor.setPower(0);
+            RFMotor.setPower(0);
+            LBMotor.setPower(0);
+            RBMotor.setPower(0);
+        } catch (Exception e) {
+        }
 
         //TODO: Figure out which motors need to be reversed, etc. so that the robot actually goes forward lmao
         LFMotor.setDirection(DcMotorSimple.Direction.REVERSE);
