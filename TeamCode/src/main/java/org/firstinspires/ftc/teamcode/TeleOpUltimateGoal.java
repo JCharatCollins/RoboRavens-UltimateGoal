@@ -8,13 +8,13 @@ import Team7159.ComplexRobots.FlywheelBot;
 public class TeleOpUltimateGoal extends LinearOpMode {
 
     final int PLATFORM_BASE = 0;
-    final int PLATFORM_RAISED = 142;
-    final int PLATFORM_TOLERANCE = 10;
-    final double PLATFORM_MOTOR_POWER = 0.1;
+    final int PLATFORM_RAISED = 166;
+    final int PLATFORM_TOLERANCE = 5;
+    final double PLATFORM_MOTOR_POWER = 0.15;
 
-    final double MAX_VELOCITY = 1500.0;
+    final double MAX_VELOCITY = 250.0 ;
 
-    final double CLAWMOTOR_INCREMENT = 0.5;
+    final double CLAWMOTOR_INCREMENT = 0.2;
 
     private FlywheelBot robot = new FlywheelBot();
 
@@ -25,56 +25,93 @@ public class TeleOpUltimateGoal extends LinearOpMode {
 
         waitForStart();
 
-        robot.platformMotor.setPositionPIDFCoefficients(0.01);
+        robot.intakeServo.scaleRange(0.34, 0.80);
+        robot.intakeServo.setPosition(0.0);
+
         robot.platformMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
 
         int platformPos = PLATFORM_BASE;
         double clawMotorPower = 0.0;
-        // double flywheelServoPos = 0.0;
-        // double
+        boolean previousY = false;
+        boolean clawDecrease = false;
+        boolean previousA = false;
+        boolean clawIncrease = false;
+        boolean previousB = false;
+        boolean clawToggle = false;
+
+        double accel;
+        double rotate;
+        double powR;
+        double powL;
 
         while(opModeIsActive()) {
             //TODO: Use scaleRange to fix intake servo, rotate intake servo on servo mount to actually make it usable
-            // telemetry.addData("Servo Position: ", robot.flywheelServo.getPosition());
+            //telemetry.addData("Servo Position: ", robot.flywheelServo.getPosition());
             telemetry.addData("Platform Position: ", robot.platformMotor.getCurrentPosition());
             telemetry.addData("Velocity: ", robot.flywheelMotor.getVelocity());
+            telemetry.addData("RF Motor Power: ", robot.RFMotor.getPower());
+            telemetry.addData("LF Motor Power: ", robot.LFMotor.getPower());
+            telemetry.addData("RB Motor Power: ", robot.RBMotor.getPower());
+            telemetry.addData("LB Motor Power: ", robot.LBMotor.getPower());
+
 
             // robot.flywheelServo.setPosition(flywheelServoPos);
 
-            //if platform pos is either 0 or 1, switch it, otherwise it stays the same
             if (gamepad1.x) {
-                if (Math.abs(robot.platformMotor.getCurrentPosition() - PLATFORM_BASE) < PLATFORM_TOLERANCE) platformPos = PLATFORM_RAISED;
-                else if (Math.abs(robot.platformMotor.getCurrentPosition() - PLATFORM_RAISED) < PLATFORM_TOLERANCE) platformPos = PLATFORM_BASE;
+                platformPos = PLATFORM_RAISED;
+                robot.flywheelMotor.setVelocity(MAX_VELOCITY);
+            } else {
+                platformPos = PLATFORM_BASE;
+                robot.flywheelMotor.setVelocity(0.0);
             }
             robot.platformMotor.setTargetPosition(platformPos);
+            robot.platformMotor.setPower(PLATFORM_MOTOR_POWER);
             robot.platformMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            if (gamepad1.a) {
-                clawMotorPower -= CLAWMOTOR_INCREMENT;
-            } else if (gamepad1.y) {
-                clawMotorPower += CLAWMOTOR_INCREMENT;
+            if (gamepad1.y && !previousY) {
+                clawDecrease = !clawDecrease;
+            }
+            previousY = gamepad1.y;
+
+            if (gamepad1.a && !previousA) {
+                clawIncrease = !clawIncrease;
+            }
+            previousA = gamepad1.a;
+
+            if (clawDecrease) {
+                clawMotorPower = clawMotorPower - CLAWMOTOR_INCREMENT;
+                clawDecrease = false;
+            }
+            if (clawIncrease) {
+                clawMotorPower = clawMotorPower + CLAWMOTOR_INCREMENT;
+                clawIncrease = false;
             }
             robot.clawMotor.setPower(clawMotorPower);
 
-            robot.flywheelMotor.setVelocity(gamepad1.right_trigger * MAX_VELOCITY);
+            if (gamepad1.b && !previousB) {
+                clawToggle = !clawToggle;
+            }
+            previousB = gamepad1.b;
+            if (clawToggle) {
+                robot.clawServo.setPosition(0.5);
+            } else {
+                robot.clawServo.setPosition(0.0);
+            }
 
-            if (gamepad1.left_trigger > 0.0f) {
+            robot.flywheelServo.setPosition(1.0-gamepad1.right_trigger);
+
+            if (gamepad1.left_trigger > 0.5) {
+                robot.intakeServo.setPosition(1.0);
                 robot.intakeMotor.setPower(1.0);
             } else {
+                robot.intakeServo.setPosition(0.0);
                 robot.intakeMotor.setPower(0.0);
             }
 
-//            if (gamepad1.right_bumper) {
-//                flywheelServoPos -= 0.01;
-//            }
-//            if (gamepad1.left_bumper) {
-//                flywheelServoPos += 0.01;
-//            }
-
-            double accel = -gamepad1.left_stick_y;
+            accel = -gamepad1.left_stick_y;
 
             //Right Stick--Rotation
-            double rotate = gamepad1.right_stick_x;
+            rotate = -gamepad1.right_stick_x;
 
             //Determines ratio of motor powers (by sides) using the right stick
             double rightRatio = 0.5 - (0.5 * rotate);
@@ -90,60 +127,38 @@ public class TeleOpUltimateGoal extends LinearOpMode {
             }
 
             //Uses maxRatio to max out the motor ratio so that one side is always at full power.
-            double powR = rightRatio * maxRatio;
-            double powL = leftRatio * maxRatio;
+            powR = rightRatio * maxRatio;
+            powL = leftRatio * maxRatio;
             //Uses left trigger to determine slowdown.
-            if(gamepad1.left_trigger>0.5) {
-                robot.RFMotor.setPower((powR * accel)/2);
-                robot.RBMotor.setPower((powR * accel)/2);
-                robot.LFMotor.setPower((powL * accel)/2);
-                robot.LBMotor.setPower((powL * accel)/2);
-            } else {
-                robot.RFMotor.setPower(powR * accel);
-                robot.RBMotor.setPower(powR * accel);
-                robot.LFMotor.setPower(powL * accel);
-                robot.LBMotor.setPower(powL * accel);
-            }
+            robot.RFMotor.setPower(powR * accel);
+            robot.RBMotor.setPower(powR * accel);
+            robot.LFMotor.setPower(powL * accel);
+            robot.LBMotor.setPower(powL * accel);
 
             if(gamepad1.right_bumper && gamepad1.left_bumper) {
                 robot.RFMotor.setPower(0);
                 robot.LFMotor.setPower(0);
                 robot.RBMotor.setPower(0);
                 robot.LBMotor.setPower(0);
-            } else if(gamepad1.right_bumper) {
-                if(gamepad1.left_trigger>0.5) {
-                    robot.RFMotor.setPower(-0.5);
-                    robot.LFMotor.setPower(0.5);
-                    robot.RBMotor.setPower(-0.5);
-                    robot.LBMotor.setPower(0.5);
-                } else {
-                    robot.RFMotor.setPower(-1);
-                    robot.LFMotor.setPower(1);
-                    robot.RBMotor.setPower(-1);
-                    robot.LBMotor.setPower(1);
-                }
             } else if(gamepad1.left_bumper) {
-                if(gamepad1.left_trigger>0.5) {
-                    robot.RFMotor.setPower(0.5);
-                    robot.LFMotor.setPower(-0.5);
-                    robot.RBMotor.setPower(0.5);
-                    robot.LBMotor.setPower(-0.5);
-                } else {
-                    robot.RFMotor.setPower(1);
-                    robot.LFMotor.setPower(-1);
-                    robot.RBMotor.setPower(1);
-                    robot.LBMotor.setPower(-1);
-                }
+                robot.RFMotor.setPower(-1);
+                robot.LFMotor.setPower(1);
+                robot.RBMotor.setPower(-1);
+                robot.LBMotor.setPower(1);
+            } else if(gamepad1.right_bumper) {
+                robot.RFMotor.setPower(1);
+                robot.LFMotor.setPower(-1);
+                robot.RBMotor.setPower(1);
+                robot.LBMotor.setPower(-1);
             }
-
             //Strafing controls (thanks Nick)
             if (gamepad1.dpad_up) {
-                if (gamepad1.dpad_left) {
+                if (gamepad1.dpad_right) {
                     robot.RFMotor.setPower(1);
                     robot.LFMotor.setPower(0);
                     robot.RBMotor.setPower(0);
                     robot.LBMotor.setPower(1);
-                } else if (gamepad1.dpad_right) {
+                } else if (gamepad1.dpad_left) {
                     robot.RFMotor.setPower(0);
                     robot.LFMotor.setPower(1);
                     robot.RBMotor.setPower(1);
@@ -155,12 +170,12 @@ public class TeleOpUltimateGoal extends LinearOpMode {
                     robot.LBMotor.setPower(1);
                 }
             } else if (gamepad1.dpad_down) {
-                if (gamepad1.dpad_left) {
+                if (gamepad1.dpad_right) {
                     robot.RFMotor.setPower(0);
                     robot.LFMotor.setPower(-1);
                     robot.RBMotor.setPower(-1);
                     robot.LBMotor.setPower(0);
-                } else if (gamepad1.dpad_right) {
+                } else if (gamepad1.dpad_left) {
                     robot.RFMotor.setPower(-1);
                     robot.LFMotor.setPower(0);
                     robot.RBMotor.setPower(0);
@@ -173,12 +188,12 @@ public class TeleOpUltimateGoal extends LinearOpMode {
                 }
             }
             else {
-                if (gamepad1.dpad_left) {
+                if (gamepad1.dpad_right) {
                     robot.RFMotor.setPower(1);
                     robot.LFMotor.setPower(-1);
                     robot.RBMotor.setPower(-1);
                     robot.LBMotor.setPower(1);
-                } else if (gamepad1.dpad_right) {
+                } else if (gamepad1.dpad_left) {
                     robot.RFMotor.setPower(-1);
                     robot.LFMotor.setPower(1);
                     robot.RBMotor.setPower(1);

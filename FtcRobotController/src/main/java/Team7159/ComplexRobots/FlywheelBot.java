@@ -61,6 +61,9 @@ public class FlywheelBot extends BasicMecanum {
         platformMotor.setPower(0);
         clawMotor.setPower(0);
 
+        flywheelServo.scaleRange(0.21, 0.65);
+        intakeServo.setPosition(0.0);
+
         //:crab: william is gone :crab:
     }
 }

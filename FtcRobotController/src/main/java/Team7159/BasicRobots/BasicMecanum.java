@@ -29,21 +29,18 @@ public class BasicMecanum {
         RFMotor = Map.dcMotor.get("FRDrive");
         RBMotor = Map.dcMotor.get("BRDrive");
 
-        try {
-            LFMotor.setPower(0);
-            RFMotor.setPower(0);
-            LBMotor.setPower(0);
-            RBMotor.setPower(0);
-        } catch (Exception e) {
-        }
+        LFMotor.setPower(0);
+        RFMotor.setPower(0);
+        LBMotor.setPower(0);
+        RBMotor.setPower(0);
 
         //TODO: Figure out which motors need to be reversed, etc. so that the robot actually goes forward lmao
-        LFMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        RFMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        LFMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        RFMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         LBMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        RBMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        RBMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        //for now, we do this (maybe change later)
+        //for now, we do this (maybe change later-
         LFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
