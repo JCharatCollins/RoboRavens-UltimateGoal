@@ -1,7 +1,5 @@
 ## NOTICE
 
-## JOSH WAS HERE
-
 This repository contains the public FTC SDK for the Ultimate Goal (2020-2021) competition season.
 
 Formerly this software project was hosted [here](https://github.com/FIRST-Tech-Challenge/Skystone).  Teams who are competing in the Ultimate Goal Challenge should use this new [FtcRobotController repository](https://github.com/FIRST-Tech-Challenge/FtcRobotController) instead of last season's (no longer updated) Skystone repository.
@@ -1007,5 +1005,3 @@ Changes include:
  * The API for the Legacy Module and Core Device Interface Module have been updated.
    - Support for encoders with the Legacy Module is now working.
  * The hardware loop has been updated for better performance.
-
-## I am here
