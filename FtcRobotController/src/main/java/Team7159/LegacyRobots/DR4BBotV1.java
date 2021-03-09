@@ -1,4 +1,4 @@
-package Team7159.ComplexRobots;
+package Team7159.LegacyRobots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -36,7 +36,7 @@ import Team7159.BasicRobots.BasicMecanum;
 
  */
 
-public class DR4BBotV2 extends BasicMecanum {
+public class DR4BBotV1 extends BasicMecanum {
 
     //The motor controlling rotating the vacuum
     public DcMotor rightLiftMotor;
@@ -50,10 +50,6 @@ public class DR4BBotV2 extends BasicMecanum {
     //The left servo used for moving vacuum in and out
     public Servo leftLiftServo;
 
-    //The foundation-moving claw servos
-    public Servo leftFoundationServo;
-    public Servo rightFoundationServo;
-
     public void init(HardwareMap Map){
 
         super.init(Map);
@@ -61,14 +57,9 @@ public class DR4BBotV2 extends BasicMecanum {
         //Gets the actual hardware names from phone's config
         rightLiftMotor = Map.dcMotor.get("RLift");
         leftLiftMotor = Map.dcMotor.get("LLift");
-        rightLiftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        leftLiftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         leftLiftServo = Map.servo.get("LSLift");
         rightLiftServo = Map.servo.get("RSLift");
-
-        leftFoundationServo = Map.servo.get("LBServo");
-        rightFoundationServo = Map.servo.get("RBServo");
 
         rightLiftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -84,7 +75,7 @@ public class DR4BBotV2 extends BasicMecanum {
         if (remaining > 0)
             Thread.sleep(remaining);
 
-        // Reset the cycle clock for the next pass.
+        // Reset the cycle clock for the next pass.p
         period.reset();
     }
 

@@ -1,8 +1,6 @@
-package Team7159.ComplexRobots;
+package Team7159.LegacyRobots;
 
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -10,9 +8,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import Team7159.BasicRobots.BasicMecanum;
 
 /*
-    CONFIGURATION:
-    ExpandDong
-
     EXPANSION HUB 1
     MOTORS:
     0-RF NeveRest 40 Gearmotor
@@ -37,44 +32,29 @@ import Team7159.BasicRobots.BasicMecanum;
 
  */
 
-public class VacuumBotV3 extends BasicMecanum {
+public class VacuumBotTrial extends BasicMecanum {
 
-    //The motor controlling rotating the vacuum
-    public DcMotor chainMotor;
+    //The motor controlling the chain lift.
+//    public DcMotor liftMotor;
 
-    //The motor controlling the chain input of the vacuum
-    public DcMotor vacuumMotor;
 
-    //The motor controlling the linear actuator's movement
-    public DcMotor linearActuator;
+    //The servo for moving the arm back into the lander.
+    public Servo liftServo;
 
-    //The left servo used for moving vacuum in and out
-    public CRServo lServo;
-
-    //The right servo used for moving vacuum in and out
-    public CRServo rServo;
-
-    //The servo for moving the arm back into the lander
-   public Servo liftServo;
+    //The motor for the linear actuator ascension.
+    public DcMotor LinearActuator;
 
     public void init(HardwareMap Map){
 
         super.init(Map);
 
         //Gets the actual hardware names from phone's config
-        linearActuator = Map.dcMotor.get("linAct");
-        linearActuator.setDirection(DcMotorSimple.Direction.REVERSE);
-        chainMotor = Map.dcMotor.get("cM");
-        vacuumMotor = Map.dcMotor.get("vM");
+//        liftMotor = Map.dcMotor.get("lM");
+        LinearActuator =Map.dcMotor.get("LinearActuator");
 
         //The motors need to go backward so these are set to reverse.
-
-        vacuumMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        vacuumMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-
-        lServo = Map.crservo.get("lS");
-        rServo = Map.crservo.get("rS");
+//        liftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+//        liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         liftServo = Map.servo.get("liftServo");
     }

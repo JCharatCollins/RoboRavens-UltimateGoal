@@ -1,32 +1,32 @@
 package Team7159.BasicRobots;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
+import com.arcrobotics.ftclib.hardware.motors.*;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class BasicHolonomic {
 
-    public DcMotor RFMotor;
-    public DcMotor RBMotor;
-    public DcMotor LFMotor;
-    public DcMotor LBMotor;
+    public Motor RFMotor;
+    public Motor RBMotor;
+    public Motor LFMotor;
+    public Motor LBMotor;
 
 
     public void init(HardwareMap Map){
 
-        RFMotor = Map.dcMotor.get("frontRight");
-        RBMotor = Map.dcMotor.get("backRight");
-        LFMotor = Map.dcMotor.get("frontLeft");
-        LBMotor = Map.dcMotor.get("backLeft");
+        LFMotor = new Motor(Map, "FLDrive");
+        LBMotor = new Motor(Map, "BLDrive");
+        RFMotor = new Motor(Map, "FRDrive");
+        RBMotor = new Motor(Map, "BRDrive");
 
-        RFMotor.setPower(0);
-        RBMotor.setPower(0);
-        LFMotor.setPower(0);
-        LBMotor.setPower(0);
+        RFMotor.set(0.0);
+        RBMotor.set(0.0);
+        LFMotor.set(0.0);
+        LBMotor.set(0.0);
 
-        RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        LFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        RFMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        RBMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        LFMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        LBMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
     }
 
 }

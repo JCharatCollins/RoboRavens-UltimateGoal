@@ -4,7 +4,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import Team7159.ComplexRobots.DR4BBotV1point5;
+import Team7159.LegacyRobots.DR4BBotV1point5;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="TeleOpSkystonesV2.5")
 public class TeleOpSkystonesV2point5 extends LinearOpMode {

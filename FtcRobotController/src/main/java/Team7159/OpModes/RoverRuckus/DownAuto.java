@@ -2,7 +2,7 @@ package Team7159.OpModes.RoverRuckus;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import Team7159.ComplexRobots.VacuumBotV2;
+import Team7159.LegacyRobots.VacuumBotV2;
 import Team7159.Enums.Direction;
 
 @Autonomous(name = "DownAuto")

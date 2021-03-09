@@ -23,10 +23,13 @@ android {
 
 repositories {
     maven { url = "https://dl.bintray.com/first-tech-challenge/ftcsdk/" }
-
     flatDir {
         dirs '../libs'
     }
+}
+
+dependencies {
+    implementation 'com.arcrobotics:ftclib:1.1.6' // core
 }
 
 apply from: 'build.release.gradle'

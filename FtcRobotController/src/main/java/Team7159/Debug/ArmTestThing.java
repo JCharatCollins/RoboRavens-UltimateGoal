@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import Team7159.ComplexRobots.ArmTest;
+import Team7159.LegacyRobots.ArmTest;
 
 @TeleOp(name = "armtest")
 @Disabled

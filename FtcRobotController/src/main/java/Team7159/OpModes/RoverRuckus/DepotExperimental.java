@@ -18,7 +18,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-import Team7159.ComplexRobots.VacuumBotV2;
+import Team7159.LegacyRobots.VacuumBotV2;
 import Team7159.Enums.Direction;
 
 import static Team7159.Utils.BitmapManip.RotateBitmap180;

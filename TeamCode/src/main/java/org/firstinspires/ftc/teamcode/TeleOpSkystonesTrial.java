@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import Team7159.ComplexRobots.DR4BBotV1;
+import Team7159.LegacyRobots.DR4BBotV1;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="TeleOpSkystonesTrial")
 public class TeleOpSkystonesTrial extends LinearOpMode {
