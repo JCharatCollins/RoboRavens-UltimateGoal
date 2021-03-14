@@ -8,6 +8,7 @@ package Team7159.ComplexRobots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -38,6 +39,8 @@ public class FlywheelBot extends BasicMecanum {
         flywheelServo = Map.servo.get("flywheelServo");
         clawServo = Map.servo.get("clawServo");
         intakeServo = Map.servo.get("intakeServo");
+
+        flywheelMotor.setDirection(DcMotorEx.Direction.REVERSE);
 
         flywheelMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
