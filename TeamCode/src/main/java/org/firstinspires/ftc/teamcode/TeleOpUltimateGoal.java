@@ -12,7 +12,7 @@ public class TeleOpUltimateGoal extends LinearOpMode {
     final int PLATFORM_TOLERANCE = 5;
     final double PLATFORM_MOTOR_POWER = 0.15;
 
-    final double MAX_VELOCITY = 250.0;
+    final double MAX_POWER = 0.52;
 
     final double CLAWMOTOR_INCREMENT = 0.2;
 
@@ -59,10 +59,10 @@ public class TeleOpUltimateGoal extends LinearOpMode {
 
             if (gamepad1.x) {
                 platformPos = PLATFORM_RAISED;
-                robot.flywheelMotor.setPower(MAX_VELOCITY);
+                robot.flywheelMotor.setPower(MAX_POWER);
             } else {
                 platformPos = PLATFORM_BASE;
-                robot.flywheelMotor.setVelocity(0.0);
+                robot.flywheelMotor.setPower(0.0);
             }
             robot.platformMotor.setTargetPosition(platformPos);
             robot.platformMotor.setPower(PLATFORM_MOTOR_POWER);

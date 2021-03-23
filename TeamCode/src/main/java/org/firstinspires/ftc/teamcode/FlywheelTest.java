@@ -19,17 +19,17 @@ public class FlywheelTest extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            telemetry.addData("Flywheel Velocity: ", robot.flywheelMotor.getVelocity());
+            telemetry.addData("Flywheel Velocity: ", robot.flywheelMotor.getPower());
             if (gamepad1.right_trigger > 0) {
-                robot.flywheelMotor.setVelocity(flywheelSpeed);
+                robot.flywheelMotor.setPower(flywheelSpeed);
             } else {
                 robot.flywheelMotor.setPower(0.0);
             }
             if (gamepad1.a && flywheelSpeed > 0.0) {
-                flywheelSpeed -= 0.05;
+                flywheelSpeed -= 0.01;
             }
             if (gamepad1.y) {
-                flywheelSpeed += 0.05;
+                flywheelSpeed += 0.01;
             }
             telemetry.update();
         }

@@ -42,7 +42,7 @@ public class FlywheelBot extends BasicMecanum {
 
         flywheelMotor.setDirection(DcMotorEx.Direction.REVERSE);
 
-        flywheelMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        flywheelMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         platformMotor.setMode((DcMotorEx.RunMode.RUN_USING_ENCODER));
         clawMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
