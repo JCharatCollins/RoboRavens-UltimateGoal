@@ -9,7 +9,6 @@ public class TeleOpUltimateGoal extends LinearOpMode {
 
     final int PLATFORM_BASE = 0;
     final int PLATFORM_RAISED = 166;
-    final int PLATFORM_TOLERANCE = 5;
     final double PLATFORM_MOTOR_POWER = 0.15;
 
     final double MAX_POWER = 0.52;
@@ -27,6 +26,8 @@ public class TeleOpUltimateGoal extends LinearOpMode {
 
         robot.intakeServo.scaleRange(0.34, 0.80);
         robot.intakeServo.setPosition(0.0);
+
+        robot.flywheelServo.setPosition(1.0);
 
         robot.platformMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -54,7 +55,6 @@ public class TeleOpUltimateGoal extends LinearOpMode {
             telemetry.addData("RB Motor Power: ", robot.RBMotor.getPower());
             telemetry.addData("LB Motor Power: ", robot.LBMotor.getPower());
 
-
             // robot.flywheelServo.setPosition(flywheelServoPos);
 
             if (gamepad1.x) {
@@ -72,7 +72,6 @@ public class TeleOpUltimateGoal extends LinearOpMode {
                 clawDecrease = !clawDecrease;
             }
             previousY = gamepad1.y;
-
             if (gamepad1.a && !previousA) {
                 clawIncrease = !clawIncrease;
             }
@@ -92,6 +91,7 @@ public class TeleOpUltimateGoal extends LinearOpMode {
                 clawToggle = !clawToggle;
             }
             previousB = gamepad1.b;
+
             if (clawToggle) {
                 robot.clawServo.setPosition(0.5);
             } else {

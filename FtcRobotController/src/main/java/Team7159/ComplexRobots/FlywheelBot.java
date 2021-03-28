@@ -32,9 +32,9 @@ public class FlywheelBot extends BasicMecanum {
 
         flywheelMotor = Map.get(DcMotorEx.class, "flywheelMotor");
         platformMotor = Map.get(DcMotorEx.class, "platformMotor");
+        clawMotor = Map.get(DcMotorEx.class, "clawMotor");
 
         intakeMotor = Map.dcMotor.get("intakeMotor");
-        clawMotor = Map.dcMotor.get("clawMotor");
 
         flywheelServo = Map.servo.get("flywheelServo");
         clawServo = Map.servo.get("clawServo");

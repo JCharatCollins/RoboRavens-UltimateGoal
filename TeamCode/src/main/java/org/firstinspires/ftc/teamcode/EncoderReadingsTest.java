@@ -18,17 +18,25 @@ public class EncoderReadingsTest extends LinearOpMode {
 
         double flywheelServoPos = 0.0;
         double intakeServoPos = 0.0;
+        int clawMotorPos = 0;
+        double clawMotorPower = 0.0;
 
         robot.platformMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        int platformPos = robot.platformMotor.getCurrentPosition();
+        robot.clawMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
 
         while(opModeIsActive()) {
             robot.flywheelServo.setPosition(flywheelServoPos);
             robot.intakeServo.setPosition(intakeServoPos);
 
+            robot.clawMotor.setPower(clawMotorPower);
+            robot.clawMotor.setTargetPosition(clawMotorPos);
+            robot.clawMotor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+
             telemetry.addData("Flywheel Servo Position: ", robot.flywheelServo.getPosition());
             telemetry.addData("Intake Servo Position: ", robot.intakeServo.getPosition());
             telemetry.addData("Platform Position: ", robot.platformMotor.getCurrentPosition());
+            telemetry.addData("Claw Position: ", clawMotorPos);
+            telemetry.addData("Claw Power: ", clawMotorPower);
 
             if (gamepad1.a) {
                 flywheelServoPos -= 0.01;
@@ -41,6 +49,18 @@ public class EncoderReadingsTest extends LinearOpMode {
             }
             if (gamepad1.b) {
                 intakeServoPos += 0.01;
+            }
+            if (gamepad1.dpad_up) {
+                clawMotorPos++;
+            }
+            if (gamepad1.dpad_down) {
+                clawMotorPos--;
+            }
+            if (gamepad1.dpad_left) {
+                clawMotorPower += 0.01;
+            }
+            if (gamepad1.dpad_right) {
+                clawMotorPower -= 0.01;
             }
 
             telemetry.update();
