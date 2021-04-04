@@ -2,12 +2,12 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import Team7159.ComplexRobots.FlywheelBot;
+import Team7159.ComplexRobots.FlywheelTestBot;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Flywheel Testing")
 public class FlywheelTest extends LinearOpMode {
 
-    private FlywheelBot robot = new FlywheelBot();
+    private FlywheelTestBot robot = new FlywheelTestBot();
 
     double flywheelSpeed = 0.0;
     

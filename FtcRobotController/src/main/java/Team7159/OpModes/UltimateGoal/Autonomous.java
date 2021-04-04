@@ -61,12 +61,12 @@ public class Autonomous extends LinearOpMode {
     }
 
     public void strafe2(Direction direction, double power, int t) {
-        if(direction == Direction.LEFT){
+        if(direction == Direction.LEFT) {
             robot.LFMotor.setPower(-power);
             robot.RFMotor.setPower(power);
             robot.LBMotor.setPower(power);
             robot.RBMotor.setPower(-power);
-        }else if(direction == Direction.RIGHT) {
+        } else if(direction == Direction.RIGHT) {
             robot.LFMotor.setPower(power);
             robot.RFMotor.setPower(-power);
             robot.LBMotor.setPower(-power);
@@ -77,7 +77,7 @@ public class Autonomous extends LinearOpMode {
     }
 
     public void readyFlywheel() {
-        robot.flywheelMotor.setPower(0.46);
+        robot.flywheelMotor.setPower(0.50);
         sleep(2000);
     }
     public void unreadyFlywheel() {
