@@ -1,8 +1,8 @@
-package Team7159.ComplexRobots;
+package Team7159.LegacyRobots;
 
 /**
  * Created by Joshua Charat-Collins, 2020-2021
- * Robot used in Ultimate Goal.
+ * Testing robot used in Ultimate Goal.
  * This season sucked.
  */
 

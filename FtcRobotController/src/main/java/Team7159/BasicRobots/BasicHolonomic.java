@@ -23,6 +23,11 @@ public class BasicHolonomic {
         LFMotor.set(0.0);
         LBMotor.set(0.0);
 
+        LFMotor.setRunMode(Motor.RunMode.RawPower);
+        RFMotor.setRunMode(Motor.RunMode.RawPower);
+        LBMotor.setRunMode(Motor.RunMode.RawPower);
+        RBMotor.setRunMode(Motor.RunMode.RawPower);
+
         RFMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         RBMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         LFMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);

@@ -1,7 +1,7 @@
 package Team7159.BasicRobots;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.arcrobotics.ftclib.hardware.motors.*;
+
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import Team7159.Enums.Direction;
@@ -17,140 +17,141 @@ public class BasicMecanum {
     MotorGroup Left;
     MotorGroup Right;
 
-    public DcMotor LFMotor;
-    public DcMotor RFMotor;
-    public DcMotor LBMotor;
-    public DcMotor RBMotor;
+    public Motor RFMotor;
+    public Motor RBMotor;
+    public Motor LFMotor;
+    public Motor LBMotor;
 
     public void init(HardwareMap Map) {
 
-        LFMotor = Map.dcMotor.get("FLDrive");
-        LBMotor = Map.dcMotor.get("BLDrive");
-        RFMotor = Map.dcMotor.get("FRDrive");
-        RBMotor = Map.dcMotor.get("BRDrive");
+        LFMotor = new Motor(Map, "FLDrive");
+        LBMotor = new Motor(Map, "BLDrive");
+        RFMotor = new Motor(Map, "FRDrive");
+        RBMotor = new Motor(Map, "BRDrive");
 
-        LFMotor.setPower(0);
-        RFMotor.setPower(0);
-        LBMotor.setPower(0);
-        RBMotor.setPower(0);
+        RFMotor.set(0.0);
+        RBMotor.set(0.0);
+        LFMotor.set(0.0);
+        LBMotor.set(0.0);
 
         //TODO: Figure out which motors need to be reversed, etc. so that the robot actually goes forward lmao
-        LFMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        RFMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        LBMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        RBMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        LFMotor.setInverted(false);
+        RFMotor.setInverted(true);
+        LBMotor.setInverted(true);
+        RBMotor.setInverted(true);
 
         //for now, we do this (maybe change later-
-        LFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        LFMotor.setRunMode(Motor.RunMode.RawPower);
+        RFMotor.setRunMode(Motor.RunMode.RawPower);
+        LBMotor.setRunMode(Motor.RunMode.RawPower);
+        RBMotor.setRunMode(Motor.RunMode.RawPower);
 
-        LFMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        RFMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        LBMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        RBMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        LFMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        RFMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        LBMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        RBMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         //:crab: william is gone :crab:
     }
 
     public void moveStraight(double power) {
-        LFMotor.setPower(power);
-        RFMotor.setPower(power);
-        LBMotor.setPower(power);
-        RBMotor.setPower(power);
+        LFMotor.set(power);
+        RFMotor.set(power);
+        LBMotor.set(power);
+        RBMotor.set(power);
     }
 
     public void stop() {
-        LFMotor.setPower(0);
-        RFMotor.setPower(0);
-        LBMotor.setPower(0);
-        RBMotor.setPower(0);
+        LFMotor.set(0);
+        RFMotor.set(0);
+        LBMotor.set(0);
+        RBMotor.set(0);
     }
+//    NOTE: Deprecated
+//    public void turn(Direction direction, int degrees) {
+//        Right.resetEncoders();
+//        Left.resetEncoders();
+//        //TODO: Make sure wDistance is actually correct
+//        int LeftDistance = Comp.computeTurningPos(direction, degrees, Direction.LEFT, 17.5, Version.TWO);
+//        int RightDistance = Comp.computeTurningPos(direction, degrees, Direction.RIGHT, 17.5, Version.TWO);
+//        Left.setTargetPosition(LeftDistance);
+//        Right.setTargetPosition(RightDistance);
+//        Left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        Right.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        moveStraight(0.5);
+//        while (Left.isBusy() && Right.isBusy()) {
+//        }
+//        stop();
+//        Left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        Right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//    }
 
-    public void turn(Direction direction, int degrees) {
-        Right.resetEncoders();
-        Left.resetEncoders();
-        //TODO: Make sure wDistance is actually correct
-        int LeftDistance = Comp.computeTurningPos(direction, degrees, Direction.LEFT, 17.5, Version.TWO);
-        int RightDistance = Comp.computeTurningPos(direction, degrees, Direction.RIGHT, 17.5, Version.TWO);
-        Left.setTargetPosition(LeftDistance);
-        Right.setTargetPosition(RightDistance);
-        Left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        Right.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        moveStraight(0.5);
-        while (Left.isBusy() && Right.isBusy()) {
-        }
-        stop();
-        Left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        Right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-    }
+//    NOTE: Deprecated
+//    public void driveDir(Direction direction, double distance) {
+//        Right.resetEncoders();
+//        Left.resetEncoders();
+//        Right.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        Left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        switch (direction) {
+//            case FORWARDS:
+//                int pos = -Comp.computePositionD(RobotMath.toMeters(distance), Version.TWO);
+//                Right.setTargetPosition(pos);
+//                Left.setTargetPosition(pos);
+//                break;
+//            case BACKWARDS:
+//                pos = Comp.computePositionD(RobotMath.toMeters(distance), Version.TWO);
+//                Right.setTargetPosition(pos);
+//                Left.setTargetPosition(pos);
+//                break;
+//        }
+//        moveStraight(0.5);
+//        while (Right.isBusy() && Left.isBusy()) {
+//        }
+//        stop();
+//        Right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        Left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//    }
 
-    public void driveDir(Direction direction, double distance) {
-        Right.resetEncoders();
-        Left.resetEncoders();
-        Right.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        Left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        switch (direction) {
-            case FORWARDS:
-                int pos = -Comp.computePositionD(RobotMath.toMeters(distance), Version.TWO);
-                Right.setTargetPosition(pos);
-                Left.setTargetPosition(pos);
-                break;
-            case BACKWARDS:
-                pos = Comp.computePositionD(RobotMath.toMeters(distance), Version.TWO);
-                Right.setTargetPosition(pos);
-                Left.setTargetPosition(pos);
-                break;
-        }
-        moveStraight(0.5);
-        while (Right.isBusy() && Left.isBusy()) {
-        }
-        stop();
-        Right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        Left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-    }
-
-    public void driveDirPower(Direction direction, double power, double time) throws InterruptedException{
-        switch (direction) {
-            case FORWARDS:
-                LFMotor.setPower(power);
-                RFMotor.setPower(power);
-                RBMotor.setPower(power);
-                LBMotor.setPower(power);
-                wait((int)time * 1000);
-                stop();
-                break;
-            case BACKWARDS:
-                LFMotor.setPower(-power);
-                RFMotor.setPower(-power);
-                RBMotor.setPower(-power);
-                LBMotor.setPower(-power);
-                wait((int)time * 1000);
-                stop();
-                break;
-        }
-        moveStraight(0.5);
-        while (Right.isBusy() && Left.isBusy()) {
-        }
-        stop();
-        Right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        Left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-    }
+//    NOTE: Deprecated
+//    public void driveDirPower(Direction direction, double power, double time) throws InterruptedException{
+//        switch (direction) {
+//            case FORWARDS:
+//                LFMotor.set(power);
+//                RFMotor.set(power);
+//                RBMotor.set(power);
+//                LBMotor.set(power);
+//                wait((int)time * 1000);
+//                stop();
+//                break;
+//            case BACKWARDS:
+//                LFMotor.set(-power);
+//                RFMotor.set(-power);
+//                RBMotor.set(-power);
+//                LBMotor.set(-power);
+//                wait((int)time * 1000);
+//                stop();
+//                break;
+//        }
+//        moveStraight(0.5);
+//        while (Right.isBusy() && Left.isBusy()) {
+//        }
+//        stop();
+//        Right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        Left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//    }
 
     public void strafe(Direction direction, double power, double time) throws InterruptedException{
-
         if(direction == Direction.LEFT){
-            LFMotor.setPower(-power);
-            RFMotor.setPower(power);
-            LBMotor.setPower(power);
-            RBMotor.setPower(-power);
+            LFMotor.set(-power);
+            RFMotor.set(power);
+            LBMotor.set(power);
+            RBMotor.set(-power);
             wait((int)time * 1000);
             stop();
         }else if(direction == Direction.RIGHT){
-            LFMotor.setPower(power);
-            RFMotor.setPower(-power);
-            LBMotor.setPower(-power);
-            RBMotor.setPower(power);
+            LFMotor.set(power);
+            RFMotor.set(-power);
+            LBMotor.set(-power);
+            RBMotor.set(power);
             wait((int)time * 1000);
             stop();
         }else{

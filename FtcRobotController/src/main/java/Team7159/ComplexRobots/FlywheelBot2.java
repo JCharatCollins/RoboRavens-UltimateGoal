@@ -6,6 +6,9 @@ package Team7159.ComplexRobots;
  * This season sucked.
  */
 
+import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.SimpleServo;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -15,43 +18,45 @@ import Team7159.BasicRobots.BasicMecanum;
 
 public class FlywheelBot2 extends BasicMecanum {
 
-    public DcMotorEx flywheelMotor;
-    public DcMotorEx platformMotor;
+    public Motor flywheelMotor;
+    public Motor platformMotor;
 
-    public DcMotor intakeMotor;
+    public Motor intakeMotor;
 
-    public Servo flywheelServo;
-    public Servo intakeServo;
-    public Servo clawServo;
+    public ServoEx flywheelServo;
+    public ServoEx intakeServo;
+    public ServoEx clawServo;
 
     public void init(HardwareMap Map) {
 
         super.init(Map);
 
-        flywheelMotor = Map.get(DcMotorEx.class, "flywheelMotor");
-        platformMotor = Map.get(DcMotorEx.class, "platformMotor");
+        flywheelMotor = new Motor(Map, "flywheelMotor");
+        platformMotor = new Motor(Map, "platformMotor");
 
-        intakeMotor = Map.dcMotor.get("intakeMotor");
+        intakeMotor = new Motor(Map, "intakeMotor");
 
-        flywheelServo = Map.servo.get("flywheelServo");
-        clawServo = Map.servo.get("clawServo");
-        intakeServo = Map.servo.get("intakeServo");
+        flywheelServo = new SimpleServo(Map, "flywheelServo");
+        clawServo = new SimpleServo(Map, "clawServo");
+        intakeServo = new SimpleServo(Map, "intakeServo");
 
-        flywheelMotor.setDirection(DcMotorEx.Direction.REVERSE);
+        flywheelMotor.setInverted(true);
 
-        flywheelMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
-        intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        platformMotor.setMode((DcMotorEx.RunMode.RUN_USING_ENCODER));
+        flywheelMotor.setRunMode(Motor.RunMode.RawPower);
+        intakeMotor.setRunMode(Motor.RunMode.RawPower);
+        platformMotor.setRunMode(Motor.RunMode.PositionControl);
+        platformMotor.setPositionCoefficient(0.05);
+        platformMotor.setPositionTolerance(5);
 
-        flywheelMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        platformMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        flywheelMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        intakeMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        platformMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 
-        flywheelMotor.setPower(0);
-        intakeMotor.setPower(0);
-        platformMotor.setPower(0);
+        flywheelMotor.set(0);
+        intakeMotor.set(0);
+        platformMotor.set(0);
 
-        flywheelServo.scaleRange(0.21, 0.65);
+        flywheelServo.setRange(0.21, 0.65);
         intakeServo.setPosition(0.0);
 
         //:crab: william is gone :crab:
