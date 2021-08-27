@@ -1,5 +1,6 @@
-package Team7159.ComplexRobots;
+package Team7159.LegacyRobots;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -10,7 +11,7 @@ import Team7159.BasicRobots.BasicMecanum;
 
 /*
     CONFIGURATION:
-    DR4BBotV1
+    ExpandDong
 
     EXPANSION HUB 1
     MOTORS:
@@ -36,33 +37,46 @@ import Team7159.BasicRobots.BasicMecanum;
 
  */
 
-public class DR4BBotV1 extends BasicMecanum {
+public class VacuumBotV3 extends BasicMecanum {
 
     //The motor controlling rotating the vacuum
-    public DcMotor rightLiftMotor;
+    public DcMotor chainMotor;
 
     //The motor controlling the chain input of the vacuum
-    public DcMotor leftLiftMotor;
+    public DcMotor vacuumMotor;
 
     //The motor controlling the linear actuator's movement
-    public Servo rightLiftServo;
+    public DcMotor linearActuator;
 
     //The left servo used for moving vacuum in and out
-    public Servo leftLiftServo;
+    public CRServo lServo;
+
+    //The right servo used for moving vacuum in and out
+    public CRServo rServo;
+
+    //The servo for moving the arm back into the lander
+   public Servo liftServo;
 
     public void init(HardwareMap Map){
 
         super.init(Map);
 
         //Gets the actual hardware names from phone's config
-        rightLiftMotor = Map.dcMotor.get("RLift");
-        leftLiftMotor = Map.dcMotor.get("LLift");
+        linearActuator = Map.dcMotor.get("linAct");
+        linearActuator.setDirection(DcMotorSimple.Direction.REVERSE);
+        chainMotor = Map.dcMotor.get("cM");
+        vacuumMotor = Map.dcMotor.get("vM");
 
-        leftLiftServo = Map.servo.get("LSLift");
-        rightLiftServo = Map.servo.get("RSLift");
+        //The motors need to go backward so these are set to reverse.
 
-        rightLiftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        vacuumMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        vacuumMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+
+        lServo = Map.crservo.get("lS");
+        rServo = Map.crservo.get("rS");
+
+        liftServo = Map.servo.get("liftServo");
     }
 
     private ElapsedTime period = new ElapsedTime();
@@ -75,7 +89,7 @@ public class DR4BBotV1 extends BasicMecanum {
         if (remaining > 0)
             Thread.sleep(remaining);
 
-        // Reset the cycle clock for the next pass.p
+        // Reset the cycle clock for the next pass.
         period.reset();
     }
 

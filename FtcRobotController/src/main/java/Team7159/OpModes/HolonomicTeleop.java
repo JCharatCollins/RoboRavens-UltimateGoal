@@ -43,10 +43,10 @@ public class HolonomicTeleop extends LinearOpMode {
             if (Math.abs(lF) < 0.4) lF = 0;
             if (Math.abs(lB) < 0.4) lB = 0;
 
-            Robot.RFMotor.setPower(rF);
-            Robot.RBMotor.setPower(rB);
-            Robot.LFMotor.setPower(lF);
-            Robot.LBMotor.setPower(lB);
+            Robot.RFMotor.set(rF);
+            Robot.RBMotor.set(rB);
+            Robot.LFMotor.set(lF);
+            Robot.LBMotor.set(lB);
         }
     }
 }

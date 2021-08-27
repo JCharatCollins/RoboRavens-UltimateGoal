@@ -5,15 +5,11 @@ import android.util.DisplayMetrics;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.vuforia.CameraDevice;
 import com.vuforia.Frame;
 import com.vuforia.Image;
 import com.vuforia.PIXEL_FORMAT;
-import com.vuforia.Vuforia;
 
-import Team7159.ComplexRobots.DR4BBotV1;
-import Team7159.ComplexRobots.DR4BBotV1point5;
+import Team7159.LegacyRobots.DR4BBotV1point5;
 import Team7159.Enums.Direction;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;

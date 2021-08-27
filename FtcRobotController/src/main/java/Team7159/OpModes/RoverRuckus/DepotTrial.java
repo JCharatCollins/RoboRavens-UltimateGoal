@@ -11,8 +11,6 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
-import Team7159.ComplexRobots.VacuumBot;
-import Team7159.Enums.Direction;
 import Team7159.Enums.Side;
 
 @Autonomous(name = "DepotTrial")

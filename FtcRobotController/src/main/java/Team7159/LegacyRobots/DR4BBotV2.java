@@ -1,6 +1,7 @@
-package Team7159.ComplexRobots;
+package Team7159.LegacyRobots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -8,6 +9,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import Team7159.BasicRobots.BasicMecanum;
 
 /*
+    CONFIGURATION:
+    DR4BBotV1
+
     EXPANSION HUB 1
     MOTORS:
     0-RF NeveRest 40 Gearmotor
@@ -32,31 +36,42 @@ import Team7159.BasicRobots.BasicMecanum;
 
  */
 
-public class VacuumBotTrial extends BasicMecanum {
+public class DR4BBotV2 extends BasicMecanum {
 
-    //The motor controlling the chain lift.
-//    public DcMotor liftMotor;
+    //The motor controlling rotating the vacuum
+    public DcMotor rightLiftMotor;
 
+    //The motor controlling the chain input of the vacuum
+    public DcMotor leftLiftMotor;
 
-    //The servo for moving the arm back into the lander.
-    public Servo liftServo;
+    //The motor controlling the linear actuator's movement
+    public Servo rightLiftServo;
 
-    //The motor for the linear actuator ascension.
-    public DcMotor LinearActuator;
+    //The left servo used for moving vacuum in and out
+    public Servo leftLiftServo;
+
+    //The foundation-moving claw servos
+    public Servo leftFoundationServo;
+    public Servo rightFoundationServo;
 
     public void init(HardwareMap Map){
 
         super.init(Map);
 
         //Gets the actual hardware names from phone's config
-//        liftMotor = Map.dcMotor.get("lM");
-        LinearActuator =Map.dcMotor.get("LinearActuator");
+        rightLiftMotor = Map.dcMotor.get("RLift");
+        leftLiftMotor = Map.dcMotor.get("LLift");
+        rightLiftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftLiftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        //The motors need to go backward so these are set to reverse.
-//        liftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-//        liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftLiftServo = Map.servo.get("LSLift");
+        rightLiftServo = Map.servo.get("RSLift");
 
-        liftServo = Map.servo.get("liftServo");
+        leftFoundationServo = Map.servo.get("LBServo");
+        rightFoundationServo = Map.servo.get("RBServo");
+
+        rightLiftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
     }
 
     private ElapsedTime period = new ElapsedTime();

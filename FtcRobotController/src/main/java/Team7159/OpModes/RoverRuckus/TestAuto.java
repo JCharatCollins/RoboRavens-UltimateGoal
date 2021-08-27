@@ -2,22 +2,14 @@ package Team7159.OpModes.RoverRuckus;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
-import java.util.List;
-
-import Team7159.ComplexRobots.VacuumBotV2;
+import Team7159.LegacyRobots.VacuumBotV2;
 import Team7159.Enums.Direction;
 import Team7159.Enums.Side;
-
-import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_GOLD_MINERAL;
-import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_SILVER_MINERAL;
-import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.TFOD_MODEL_ASSET;
 
 @Autonomous(name = "TestAuto")
 
@@ -58,7 +50,7 @@ public class TestAuto extends LinearOpMode {
 
         waitForStart();
 
-        robot.strafe(Direction.RIGHT,50);
+//        robot.strafe(Direction.RIGHT,50);
          //        sleep(1000);
 //        robot.vacuumMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 //        robot.vacuumMotor.setPower(-0.3);

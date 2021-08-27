@@ -18,7 +18,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-import Team7159.ComplexRobots.VacuumBotV2;
+import Team7159.LegacyRobots.VacuumBotV2;
 import Team7159.Enums.Direction;
 
 import static Team7159.Utils.BitmapManip.RotateBitmap180;
@@ -95,7 +95,7 @@ public class CraterExperimental extends LinearOpMode {
 //        sleep(50);
 //        robot.driveDir(Direction.FORWARDS, 2);
 
-        robot.strafe(Direction.LEFT, 13);
+//        robot.strafe(Direction.LEFT, 13);
 
 
         //robot.liftMotor.setPower(-0.8);
@@ -144,7 +144,7 @@ public class CraterExperimental extends LinearOpMode {
             lower = false;
             //pos will be equal to 1, meaning was either silver or not found.
             //Check to strafe left
-            robot.strafe(Direction.RIGHT, 15);
+            // robot.strafe(Direction.RIGHT, 15);
             //moveRight(14);
             // robot.strafe(Direction.LEFT, 12);
             sleep(500);
@@ -160,7 +160,7 @@ public class CraterExperimental extends LinearOpMode {
             comp = true;
         } else if(pos == 2){
             //If position is 2 then it means it must be the last one
-            robot.strafe(Direction.LEFT, 28);
+            //robot.strafe(Direction.LEFT, 28);
             //robot.driveDir(Direction.FORWARDS, 5);
             sleep(500);
             takePic();
@@ -197,7 +197,7 @@ public class CraterExperimental extends LinearOpMode {
                     robot.driveDir(Direction.FORWARDS, 15);
                     pos = 0;
                 } else if (fLocation == 2) {
-                    robot.strafe(Direction.RIGHT, 26);
+                    //robot.strafe(Direction.RIGHT, 26);
                     //moveRight(26);
                     robot.driveDir(Direction.FORWARDS, 15);
                     comp = true;

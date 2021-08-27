@@ -2,7 +2,7 @@ package Team7159.OpModes.RoverRuckus;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import Team7159.ComplexRobots.VacuumBotV2;
+import Team7159.LegacyRobots.VacuumBotV2;
 import Team7159.Enums.Direction;
 
 @Autonomous(name = "DownAuto")
@@ -17,9 +17,9 @@ public class DownAuto extends LinearOpMode {
 
         waitForStart();
 
-       robot.strafe(Direction.LEFT, 25);
+//       robot.strafe(Direction.LEFT, 25);
        sleep(500);
-       robot.strafe(Direction.RIGHT, 25);
+//       robot.strafe(Direction.RIGHT, 25);
 
     }
 

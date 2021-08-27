@@ -1,15 +1,19 @@
-package Team7159.ComplexRobots;
+package Team7159.LegacyRobots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import Team7159.BasicRobots.BasicTank;
 
-public class ArmTest {
+public class TankBoy extends BasicTank {
+
     public DcMotor armMotor;
 
     public void init(HardwareMap Map){
+
+        super.init4Drive(Map);
 
         armMotor = Map.dcMotor.get("AM");
         armMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -29,4 +33,5 @@ public class ArmTest {
         // Reset the cycle clock for the next pass.
         period.reset();
     }
+
 }

@@ -3,7 +3,7 @@ package Team7159.OpModes.Skystones;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import Team7159.ComplexRobots.DR4BBotV1point5;
+import Team7159.LegacyRobots.DR4BBotV1point5;
 import Team7159.Enums.Direction;
 
 @Autonomous(name = "BLUEAutonomousFoundation")
