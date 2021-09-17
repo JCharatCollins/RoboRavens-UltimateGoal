@@ -9,7 +9,7 @@ import Team7159.ComplexRobots.TestBot;
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Test Bot TeleOp")
 public class TestbotTeleop extends LinearOpMode {
 
-    private TestBot robot = new Testbot();
+    private TestBot robot = new TestBot();
 
     @Override
     public void runOpMode() {
