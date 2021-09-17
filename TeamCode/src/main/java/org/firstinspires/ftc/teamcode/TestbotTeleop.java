@@ -17,6 +17,11 @@ public class TestbotTeleop extends LinearOpMode {
         robot.init(hardwareMap);
 
         waitForStart();
+        
+        double accel;
+        double rotate;
+        double powR;
+        double powL;
 
         while(opModeIsActive()) {
 
