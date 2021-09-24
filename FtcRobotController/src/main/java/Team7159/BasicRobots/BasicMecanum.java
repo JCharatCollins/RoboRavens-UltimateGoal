@@ -5,17 +5,8 @@ import com.arcrobotics.ftclib.hardware.motors.*;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import Team7159.Enums.Direction;
-import Team7159.Enums.Version;
-import Team7159.Utils.MotorGroup;
-import Team7159.Utils.RobotComp;
-import Team7159.Utils.RobotMath;
 
 public class BasicMecanum {
-
-    public RobotComp Comp = new RobotComp();
-
-    MotorGroup Left;
-    MotorGroup Right;
 
     public Motor RFMotor;
     public Motor RBMotor;
@@ -66,78 +57,6 @@ public class BasicMecanum {
         LBMotor.set(0);
         RBMotor.set(0);
     }
-//    NOTE: Deprecated
-//    public void turn(Direction direction, int degrees) {
-//        Right.resetEncoders();
-//        Left.resetEncoders();
-//        //TODO: Make sure wDistance is actually correct
-//        int LeftDistance = Comp.computeTurningPos(direction, degrees, Direction.LEFT, 17.5, Version.TWO);
-//        int RightDistance = Comp.computeTurningPos(direction, degrees, Direction.RIGHT, 17.5, Version.TWO);
-//        Left.setTargetPosition(LeftDistance);
-//        Right.setTargetPosition(RightDistance);
-//        Left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        Right.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        moveStraight(0.5);
-//        while (Left.isBusy() && Right.isBusy()) {
-//        }
-//        stop();
-//        Left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        Right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//    }
-
-//    NOTE: Deprecated
-//    public void driveDir(Direction direction, double distance) {
-//        Right.resetEncoders();
-//        Left.resetEncoders();
-//        Right.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        Left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        switch (direction) {
-//            case FORWARDS:
-//                int pos = -Comp.computePositionD(RobotMath.toMeters(distance), Version.TWO);
-//                Right.setTargetPosition(pos);
-//                Left.setTargetPosition(pos);
-//                break;
-//            case BACKWARDS:
-//                pos = Comp.computePositionD(RobotMath.toMeters(distance), Version.TWO);
-//                Right.setTargetPosition(pos);
-//                Left.setTargetPosition(pos);
-//                break;
-//        }
-//        moveStraight(0.5);
-//        while (Right.isBusy() && Left.isBusy()) {
-//        }
-//        stop();
-//        Right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        Left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//    }
-
-//    NOTE: Deprecated
-//    public void driveDirPower(Direction direction, double power, double time) throws InterruptedException{
-//        switch (direction) {
-//            case FORWARDS:
-//                LFMotor.set(power);
-//                RFMotor.set(power);
-//                RBMotor.set(power);
-//                LBMotor.set(power);
-//                wait((int)time * 1000);
-//                stop();
-//                break;
-//            case BACKWARDS:
-//                LFMotor.set(-power);
-//                RFMotor.set(-power);
-//                RBMotor.set(-power);
-//                LBMotor.set(-power);
-//                wait((int)time * 1000);
-//                stop();
-//                break;
-//        }
-//        moveStraight(0.5);
-//        while (Right.isBusy() && Left.isBusy()) {
-//        }
-//        stop();
-//        Right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        Left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//    }
 
     public void strafe(Direction direction, double power, double time) throws InterruptedException{
         if(direction == Direction.LEFT){
@@ -156,6 +75,57 @@ public class BasicMecanum {
             stop();
         }else{
             //Throw an exception
+        }
+    }
+
+    public void octoStrafe(boolean up, boolean down, boolean left, boolean right) {
+        if (up) {
+            if (right) {
+                RFMotor.set(1);
+                LFMotor.set(0);
+                RBMotor.set(0);
+                LBMotor.set(1);
+            } else if (left) {
+                RFMotor.set(0);
+                LFMotor.set(1);
+                RBMotor.set(1);
+                LBMotor.set(0);
+            } else {
+                RFMotor.set(1);
+                LFMotor.set(1);
+                RBMotor.set(1);
+                LBMotor.set(1);
+            }
+        } else if (down) {
+            if (right) {
+                RFMotor.set(0);
+                LFMotor.set(-1);
+                RBMotor.set(-1);
+                LBMotor.set(0);
+            } else if (left) {
+                RFMotor.set(-1);
+                LFMotor.set(0);
+                RBMotor.set(0);
+                LBMotor.set(-1);
+            } else {
+                RFMotor.set(-1);
+                LFMotor.set(-1);
+                RBMotor.set(-1);
+                LBMotor.set(-1);
+            }
+        }
+        else {
+            if (right) {
+                RFMotor.set(1);
+                LFMotor.set(-1);
+                RBMotor.set(-1);
+                LBMotor.set(1);
+            } else if (left) {
+                RFMotor.set(-1);
+                LFMotor.set(1);
+                RBMotor.set(1);
+                LBMotor.set(-1);
+            }
         }
     }
 }

@@ -17,11 +17,11 @@ import Team7159.BasicRobots.BasicMecanum;
 
 public class FlywheelBot extends BasicMecanum {
 
-    public Motor flywheelMotor;
-    public Motor platformMotor;
+    public MotorEx flywheelMotor;
+    public MotorEx platformMotor;
 
-    public Motor intakeMotor;
-    public Motor clawMotor;
+    public MotorEx intakeMotor;
+    public MotorEx clawMotor;
 
     public ServoEx flywheelServo;
     public ServoEx intakeServo;
@@ -31,11 +31,11 @@ public class FlywheelBot extends BasicMecanum {
 
         super.init(Map);
 
-        flywheelMotor = new Motor(Map, "flywheelMotor");
-        platformMotor = new Motor(Map, "platformMotor");
-        clawMotor = new Motor(Map, "clawMotor");
+        flywheelMotor = new MotorEx(Map, "flywheelMotor");
+        platformMotor = new MotorEx(Map, "platformMotor");
+        clawMotor = new MotorEx(Map, "clawMotor");
 
-        intakeMotor = new Motor(Map, "intakeMotor");
+        intakeMotor = new MotorEx(Map, "intakeMotor");
 
         flywheelServo = new SimpleServo(Map, "flywheelServo");
         clawServo = new SimpleServo(Map, "clawServo");

@@ -9,6 +9,7 @@ package Team7159.ComplexRobots;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
+import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -19,10 +20,10 @@ import Team7159.BasicRobots.BasicMecanum;
 
 public class FlywheelBot2 extends BasicMecanum {
 
-    public Motor flywheelMotor;
-    public Motor platformMotor;
+    public MotorEx flywheelMotor;
+    public MotorEx platformMotor;
 
-    public Motor intakeMotor;
+    public MotorEx intakeMotor;
 
     public ServoEx flywheelServo;
     public ServoEx intakeServo;
@@ -32,10 +33,10 @@ public class FlywheelBot2 extends BasicMecanum {
 
         super.init(Map);
 
-        flywheelMotor = new Motor(Map, "flywheelMotor");
-        platformMotor = new Motor(Map, "platformMotor");
+        flywheelMotor = new MotorEx(Map, "flywheelMotor");
+        platformMotor = new MotorEx(Map, "platformMotor");
 
-        intakeMotor = new Motor(Map, "intakeMotor");
+        intakeMotor = new MotorEx(Map, "intakeMotor");
 
         flywheelServo = new SimpleServo(Map, "flywheelServo");
         clawServo = new SimpleServo(Map, "clawServo");
